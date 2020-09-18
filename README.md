@@ -1,7 +1,7 @@
 # AMP
 Live view link: https://1drv.ms/u/s!ArHjFFmGIOyYjYF8chyC5yeR3-auZA?e=QiJC4f
 
-De live view is de *huidige* branch waar ik op dat moment lokaal mee werk. 
+De live view is de *huidige* branch waar ik op dat moment lokaal mee werk, een leeg bestand is toegevoegd om makkelijk te zien aan welke branch op dat moment wordt gewerkt. 
 *Vervolgens kunt u simpelweg op een file klikken om deze in de browser te inspecteren, wilt u het testen? Klik dan op "download" om een archive bestand van de live build te ontvangen.*
 
 Repository structuur:
