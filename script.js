@@ -9,40 +9,31 @@ canvas.height = height;
 
 // begin hier met jouw code voor deze opdracht
 
-let img,img2,angle;
+let car, wheel, background;
 
-img = new Image();
-img.src = "images/gear_12.png";
+car ={};
+car.image = new Image();
+car.image.src = "images/car.png"
+car.pos = 0;
+car.speed = 2;
 
-img2 = new Image();
-img2.src = "images/gear_12_blue.png";
+wheels ={};
+wheels.backWheel = new Image()
+wheels.backWheel.src = "images/wheel.png";
+wheels.frontWheel = new Image()
+wheels.frontWheel.src = "images/wheel.png";
 
-angle = 0.1;
-angle2 = 0.1;
+wheels.angle = 0;
 
-img.addEventListener('load',()=>{
-  setInterval(animate,10)
+addEventListener('keydown',(e)=>{
+  switch(e.key) {
+    case "ArrowRight":
+      car.speed += 0.5
+      break;
+    case "ArrowLeft":
+      car.speed -= -.5;
+      break;
+  }
 })
-
-function animate(){
-  context.clearRect(0,0,width,height);
-  context.save();
-  context.translate(300,300);
-  context.rotate(angle);
-  context.drawImage(img,-150,-150,300,300);
-  context.restore();
-  angle += 0.03
-  context.save();
-  context.translate(570,300);
-  context.rotate(angle2);
-  context.drawImage(img2,-150,-150,300,300);
-  context.restore();
-  angle2 -= 0.03
-  context.save();
-  context.translate(840,300);
-  context.rotate(angle);
-  context.drawImage(img,-150,-150,300,300);
-  context.restore();
-}
 
 // create namespace
