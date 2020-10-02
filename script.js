@@ -9,64 +9,31 @@ canvas.height = height;
 
 // begin hier met jouw code voor deze opdracht
 
-let car, wheel, background;
+let time, clockFace, hoursHand, minutesHand, secondsHand;
+let seconds, minutes, hours;
 
-car ={};
-car.image = new Image();
-car.image.src = "images/car.png"
-car.pos = 0;
-car.speed = 2;
+clockFace = new Image();
+clockFace.src = "images/clockFace.png";
 
-wheels ={};
-wheels.backWheel = new Image()
-wheels.backWheel.src = "images/wheel.png";
-wheels.frontWheel = new Image()
-wheels.frontWheel.src = "images/wheel.png";
+secondsHand = new Image();
+secondsHand.src = "images/secondHand.png";
 
-wheels.angle = 0;
+time = new Date();
 
-addEventListener('keydown',(e)=>{
-  switch(e.key) {
-    case "ArrowRight":
-      car.speed += 0.5
-      break;
-    case "ArrowLeft":
-      car.speed -= 0.5;
-      break;
-  }
-})
-
-car.image.addEventListener('load',()=>{
-  setInterval(animate,10)
-})
+setInterval(animate,10)
 
 function animate(){
+  time = new Date();
+  seconds = time.getSeconds();
+  console.log(seconds)
+
   context.clearRect(0,0,width,height);
-  context.drawImage(car.image,car.pos,0);
+  context.drawImage(clockFace,0,0);
 
   context.save()
-  context.translate(car.pos + 213,200)
-  context.rotate(wheels.angle);
-  context.drawImage(wheels.backWheel,-wheels.backWheel.width/2,-wheels.backWheel.height/2)
+  context.translate(clockFace.width/2,clockFace.height/2)
+  context.rotate(seconds*2*Math.PI/60);
+  context.drawImage(secondsHand,-secondsHand.width/2,-secondsHand.height);
   context.restore()
 
-  context.save()
-  context.translate(car.pos + 753,200)
-  context.rotate(wheels.angle);
-  context.drawImage(wheels.frontWheel,-wheels.frontWheel.width/2,-wheels.frontWheel.height/2)
-  context.restore()
-
-
-  car.pos += car.speed;
-  if(car.pos > width){
-    car.pos = -car.image.width
-  }
-  if(car.pos < -car.image.width){
-    car.pos = width;
-  }
-
-  wheels.angle += car.speed / (0.5*wheels.backWheel.width);
-  //console.log(car.speed / (0.5*wheels.backWheel.width))
 }
-
-// create namespace
