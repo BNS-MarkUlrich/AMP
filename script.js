@@ -54,7 +54,7 @@ function animate(){
 
   context.save()
   context.translate(clockFace.width/2,clockFace.height/2)
-  context.rotate(hours*2*Math.PI/12);
+  context.rotate(hours*2*Math.PI/12+minutes*Math.PI/720);
   context.drawImage(hoursHand,-hoursHand.width/2,-hoursHand.height);
   context.restore()
 
