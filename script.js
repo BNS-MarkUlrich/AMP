@@ -9,53 +9,33 @@ canvas.height = height;
 
 // begin hier met jouw code voor deze opdracht
 
-let time, clockFace, hoursHand, minutesHand, secondsHand;
-let seconds, minutes, hours;
+let img_highres, img_lowres, scale,point,coordinate;
 
-clockFace = new Image();
-clockFace.src = "images/clockFace4.png";
+img_lowres = new Image();
+img_lowres.src = "images/map_lowres.jpg";
 
-secondsHand = new Image();
-secondsHand.src = "images/secondHand2.png";
+img_highres = new Image();
+img_highres.src = "images/map_highres.jpg";
 
-minutesHand = new Image();
-minutesHand.src = "images/minutesHand4.png";
+scale = img_highres.width / img_lowres.width;
+coordinate = {};
 
-hoursHand = new Image();
-hoursHand.src = "images/hoursHand4.png";
-
-time = new Date();
+point = new Point(400,200,100,"white",true)
 
 setInterval(animate,10)
 
 function animate(){
-  time = new Date();
-  seconds = time.getSeconds();
-  minutes = time.getMinutes();
-  hours = time.getHours();
-  //console.log(seconds)
-  //console.log(minutes)
-  //console.log(hours)
+  coordinate.x = point.x - point.radius;
+  coordinate.y = point.y - point.radius;
 
   context.clearRect(0,0,width,height);
-  context.drawImage(clockFace,0,0);
+  //drawImage(img,sx,sy,sw,sh,x,y,w,h)
 
-  context.save()
-  context.translate(clockFace.width/2,clockFace.height/2)
-  context.rotate(seconds*2*Math.PI/60);
-  context.drawImage(secondsHand,-secondsHand.width/2,-secondsHand.height);
-  context.restore()
+  context.drawImage(img_lowres,0,0);
 
-  context.save()
-  context.translate(clockFace.width/2,clockFace.height/2)
-  context.rotate(minutes*2*Math.PI/60);
-  context.drawImage(minutesHand,-minutesHand.width/2,-minutesHand.height);
-  context.restore()
+  //point.draw()
+  context.fillRect(coordinate.x-5,coordinate.y-5,2*point.radius+10,2*point.radius+10);
 
-  context.save()
-  context.translate(clockFace.width/2,clockFace.height/2)
-  context.rotate(hours*2*Math.PI/12+minutes*2*Math.PI/720+seconds*2*Math.PI/43200);
-  context.drawImage(hoursHand,-hoursHand.width/2,-hoursHand.height);
-  context.restore()
+  context.drawImage(img_highres,coordinate.x,coordinate.y,200,200,coordinate.x,coordinate.y,2*point.radius,2*point.radius);
 
 }
